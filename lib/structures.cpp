@@ -9,7 +9,7 @@ struct user {
     char* last_name;
     char phone_number[phone_number_size];
     
-    char* username;
+    char* id;
     char* password; // or could be password_hash
     
     char* major;
@@ -19,4 +19,11 @@ struct user {
     long int wallet_balance;
 
     bool is_admin;
+}
+
+struct food {
+
+    int id;
+    char* name;
+    long int price
 }

@@ -3,7 +3,7 @@ IncludeDir=./include/
 LibDir=./lib/
 C++Flags=-I $(IncludeDir)
 Deps=$(LibDir)mohsen-main-lib.cpp
-ExecutableName=hellomake
+ExecutableName=dining
 Main=main.cpp
 
 hellomake: $(Main) $(Deps)
