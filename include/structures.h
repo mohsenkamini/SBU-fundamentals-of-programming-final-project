@@ -1,6 +1,5 @@
 #include <iostream>
-#include <mohsen-main-header.h>
-#define phone_number_size 11
+#define phone_number_size 12
 
 
 struct user {
@@ -19,11 +18,11 @@ struct user {
     long int wallet_balance;
 
     bool is_admin;
-}
+};
 
 struct food {
 
     int id;
     char* name;
-    long int price
-}
+    long int price;
+};  
