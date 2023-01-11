@@ -9,6 +9,11 @@ int main() {
   //myPrintHelloMake();
   //print_warning("RED HELLO");
 
+  // TEST CREATE_USER
+
+  user* new_user1=new user;
+  *new_user1=create_user(new_user1);
+  
   user* new_user=new user;
   *new_user=create_user(new_user);
   cout << new_user -> first_name << endl;

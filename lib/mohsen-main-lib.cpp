@@ -54,11 +54,9 @@ user create_user (user* new_user) {
 
   if (!is_there_any_admins)
   {
-    char admin_state_ans;
-    cout <<  "Great! Do you also want to be an Admin of dining ?[y/n]: ";
-    cin >> admin_state_ans;
-    cout << endl;
-    if (admin_state_ans == 'y')
+    string admin_state_ans;
+    admin_state_ans=print_message_input_string("Great! Do you also want to be an Admin of dining ?[yes/no]: ");
+    if (admin_state_ans == "yes")
     {
       new_user -> is_admin=true;
       is_there_any_admins=true;
@@ -67,6 +65,6 @@ user create_user (user* new_user) {
       new_user -> is_admin=false;
   }
 
-  cout << "Your account is successfully created!\n";
+  cout << "Your account is successfully created!" << endl ;
   return *new_user;
 }
