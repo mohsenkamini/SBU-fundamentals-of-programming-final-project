@@ -6,7 +6,7 @@ Deps=$(LibDir)mohsen-main-lib.cpp
 ExecutableName=dining
 Main=main.cpp
 
-hellomake: $(Main) $(Deps)
+diningmake: $(Main) $(Deps)
 	$(C++Compiler) -o $(ExecutableName)  $(Main) $(Deps)  $(C++Flags)
 
 clean: 
