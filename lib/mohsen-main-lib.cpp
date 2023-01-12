@@ -2,6 +2,8 @@
 #include <mohsen-main-header.h>
 #include <global_vars.h>
 #include <string>
+const int max_number_of_users=200;
+
 //#include <structures.h>
 using namespace std;
 
@@ -16,7 +18,7 @@ void myPrintHelloMake(void) {
 //{
 //  cout << text << endl;
 //}
-void print_warning (string text) 
+void print_warning (char* text) 
 {
   const std::string red("\033[0;31m");
   cout << red << text << endl;
@@ -68,3 +70,47 @@ user create_user (user* new_user) {
   cout << "Your account is successfully created!" << endl ;
   return *new_user;
 }
+
+bool login_prompt (user users_array[])
+{
+  string user_id, password;
+  user_id=print_message_input_string("Login Prompt:\nPlease enter your ID: ");
+  password=print_message_input_string("             your password: ");
+  return login(users_array,user_id,password);
+}
+
+bool login (user users_array[], string user_id, string password) {
+  bool flag=false;
+  for (int i=0 ; i < max_number_of_users ; i++ )
+  {
+    if (users_array[i].id == user_id)
+      {
+        if (users_array[i].password == password)
+        {
+          if (users_array[i].is_admin)
+          {
+            cout << "You are successfully logged in with admin privilege!";
+            is_a_user_logged_in=true;
+            is_an_admin_logged_in=true;
+          }
+          else
+          {
+            cout << "You are successfully logged in!";
+            is_a_user_logged_in=true;
+          }
+          flag=true;
+          break;
+        }
+      }
+        
+  }
+
+  if (!flag)
+    print_warning("The user ID and password does not match");
+
+  return flag;
+}
+
+
+
+
