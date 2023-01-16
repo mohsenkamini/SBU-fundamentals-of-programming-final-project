@@ -1,7 +1,6 @@
 #include <mohsen-main-header.h>
 #include <iostream>
 #include <string>
-// const int max_number_of_users=200;
 
 using namespace std;
 

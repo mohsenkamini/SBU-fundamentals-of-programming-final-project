@@ -2,22 +2,34 @@
 #include <mohsen-main-header.h>
 #include <global_vars.h>
 #include <string>
-//const int max_number_of_users=200;
 
 //#include <structures.h>
 using namespace std;
 
 
-void myPrintHelloMake(void) {
-
-  cout << "Hello makefiles!\n";
-
-  return;
-}
-//void print_standard (char* text) 
-//{
-//  cout << text << endl;
+//void general_menu (user users_array[]) {
+//
+//  switch (is_a_user_logged_in)
+//    case 1:
+//      switch (is_an_admin_logged_in)
+//        case 1:
+//          admin_menu();
+//          break;
+//        case 0:
+//          user_menu();
+//          break;
+//    case 0:
+//      string sign_in_ans=print_message_input_string("Don't have an account? Create one: [ok/no]");
+//      if (sign_in_ans == "ok")
+//      {
+//        create_user(users_array)
+//      }
+//      login_prompt();
+//      general_menu();
+//      break;
 //}
+
+
 void print_warning (char* text) 
 {
   const std::string red("\033[0;31m");
