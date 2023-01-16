@@ -7,34 +7,7 @@
 using namespace std;
 
 
-void general_menu (user users_array[]) {
 
-  switch (is_a_user_logged_in)
-  {
-    case 1:
-      switch (is_an_admin_logged_in)
-      {
-        case 1:
-          admin_menu();
-          break;
-        case 0:
-          user_menu();
-          break;
-      }
-    case 0:
-      string sign_in_ans=print_message_input_string("Don't have an account? Create one: [ok/no]");
-      if (sign_in_ans == "ok")
-      {
-        if (number_of_users < max_number_of_users)
-          users_array[number_of_users]=create_user(&users_array[number_of_users]);
-        else
-          cout << "This program cannot hold more than "<< max_number_of_users << "users. Please consult the administration";
-      }
-      login_prompt();
-      general_menu();
-      break;
-  }
-}
 
 
 void print_warning (char* text) 
@@ -109,13 +82,13 @@ bool login (user users_array[], string user_id, string password) {
         {
           if (users_array[i].is_admin)
           {
-            cout << "You are successfully logged in with admin privilege!";
+            cout << "You are successfully logged in with admin privilege!"<<endl;
             is_a_user_logged_in=true;
             is_an_admin_logged_in=true;
           }
           else
           {
-            cout << "You are successfully logged in!";
+            cout << "You are successfully logged in!"<<endl;
             is_a_user_logged_in=true;
           }
           flag=true;
@@ -131,6 +104,44 @@ bool login (user users_array[], string user_id, string password) {
   return flag;
 }
 
+void admin_menu () 
+{
+  cout << "Hey there! you're an admin";
+}
+void user_menu ()
+{
+  cout << "Hey there! you're a user";
+}
 
+
+void general_menu (user users_array[]) {
+
+  switch (is_a_user_logged_in)
+  {
+    case 1:
+      switch (is_an_admin_logged_in)
+      {
+        case 1:
+          admin_menu();
+          break;
+        case 0:
+          user_menu();
+          break;
+      }
+      break;
+    case 0:
+      string signin_or_login=print_message_input_string("\nWhat can I do for you?\n   1) Make me an account\n   2) Log me in\n   [1/2]: ");
+      if (signin_or_login == "1")
+      {
+        if (number_of_users < max_number_of_users)
+          users_array[number_of_users]=create_user(&users_array[number_of_users]);
+        else
+          cout << "This program cannot hold more than "<< max_number_of_users << " users. Please consult the administrator";
+      }
+      login_prompt(users_array);
+      general_menu(users_array);
+      break;
+  }
+}
 
 

@@ -30,10 +30,13 @@ int main() {
 
   user list_of_users[max_number_of_users];
 
-  for (int i=0 ; i < 3 ; i++)
-    list_of_users[i]=create_user(&list_of_users[i]);
+  //for (int i=0 ; i < 3 ; i++)
+  //  list_of_users[i]=create_user(&list_of_users[i]);
   
   //login_prompt(list_of_users);
+
+  // General Menu
+  general_menu(list_of_users);
 
   return(0);
 }
