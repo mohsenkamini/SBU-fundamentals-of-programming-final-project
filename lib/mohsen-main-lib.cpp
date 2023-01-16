@@ -13,7 +13,8 @@ using namespace std;
 void print_warning (char* text) 
 {
   const std::string red("\033[0;31m");
-  cout << red << text << endl;
+  const std::string normal("\033[0;37m");
+  cout << red << text << normal << endl;
 }
 
 string print_message_input_string (string message)
@@ -128,7 +129,7 @@ void general_menu (user users_array[]) {
           user_menu();
           break;
       }
-      break;
+      break;  
     case 0:
       string signin_or_login=print_message_input_string("\nWhat can I do for you?\n   1) Make me an account\n   2) Log me in\n   [1/2]: ");
       if (signin_or_login == "1")

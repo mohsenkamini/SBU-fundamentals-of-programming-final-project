@@ -36,7 +36,8 @@ int main() {
   //login_prompt(list_of_users);
 
   // General Menu
-  general_menu(list_of_users);
-
+  //general_menu(list_of_users);
+  print_warning("test warn");
+  cout << "something";
   return(0);
 }
