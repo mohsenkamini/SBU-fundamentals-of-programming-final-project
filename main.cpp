@@ -1,7 +1,7 @@
 #include <mohsen-main-header.h>
 #include <iostream>
 #include <string>
-const int max_number_of_users=200;
+// const int max_number_of_users=200;
 
 using namespace std;
 
@@ -34,7 +34,7 @@ int main() {
   for (int i=0 ; i < 3 ; i++)
     list_of_users[i]=create_user(&list_of_users[i]);
   
-  login_prompt(list_of_users);
+  //login_prompt(list_of_users);
 
   return(0);
 }

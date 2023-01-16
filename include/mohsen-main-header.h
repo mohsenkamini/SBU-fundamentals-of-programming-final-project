@@ -1,5 +1,9 @@
 #include <structures.h>
 
+#ifndef max_number_of_users
+#define max_number_of_users 200
+#endif
+
 user create_user(user* new_user);
 
 void print_warning (char* text);

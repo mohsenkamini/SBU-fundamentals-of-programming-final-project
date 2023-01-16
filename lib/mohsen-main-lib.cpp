@@ -2,7 +2,7 @@
 #include <mohsen-main-header.h>
 #include <global_vars.h>
 #include <string>
-const int max_number_of_users=200;
+//const int max_number_of_users=200;
 
 //#include <structures.h>
 using namespace std;
