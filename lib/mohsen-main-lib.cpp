@@ -7,27 +7,34 @@
 using namespace std;
 
 
-//void general_menu (user users_array[]) {
-//
-//  switch (is_a_user_logged_in)
-//    case 1:
-//      switch (is_an_admin_logged_in)
-//        case 1:
-//          admin_menu();
-//          break;
-//        case 0:
-//          user_menu();
-//          break;
-//    case 0:
-//      string sign_in_ans=print_message_input_string("Don't have an account? Create one: [ok/no]");
-//      if (sign_in_ans == "ok")
-//      {
-//        create_user(users_array)
-//      }
-//      login_prompt();
-//      general_menu();
-//      break;
-//}
+void general_menu (user users_array[]) {
+
+  switch (is_a_user_logged_in)
+  {
+    case 1:
+      switch (is_an_admin_logged_in)
+      {
+        case 1:
+          admin_menu();
+          break;
+        case 0:
+          user_menu();
+          break;
+      }
+    case 0:
+      string sign_in_ans=print_message_input_string("Don't have an account? Create one: [ok/no]");
+      if (sign_in_ans == "ok")
+      {
+        if (number_of_users < max_number_of_users)
+          users_array[number_of_users]=create_user(&users_array[number_of_users]);
+        else
+          cout << "This program cannot hold more than "<< max_number_of_users << "users. Please consult the administration";
+      }
+      login_prompt();
+      general_menu();
+      break;
+  }
+}
 
 
 void print_warning (char* text) 
@@ -80,6 +87,7 @@ user create_user (user* new_user) {
   }
 
   cout << "Your account is successfully created!" << endl ;
+  number_of_users++;
   return *new_user;
 }
 
