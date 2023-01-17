@@ -21,6 +21,11 @@ bool login_prompt (user users_array[]);
 
 void general_menu (user users_array[]);
 
-void admin_menu (user users_array[]);
+void admin_menu (user users_array[],string user_id);
 
-void user_menu (user users_array[]);
+void user_menu (user users_array[],string user_id);
+
+void show_profile(string user_id);
+
+void change_password(string user_id);
+

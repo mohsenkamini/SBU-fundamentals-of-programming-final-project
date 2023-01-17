@@ -84,12 +84,14 @@ bool login (user users_array[], string user_id, string password) {
           if (users_array[i].is_admin)
           {
             cout << "You are successfully logged in with admin privilege!"<<endl;
+            logged_in_user_id=users_array[i].id;
             is_a_user_logged_in=true;
             is_an_admin_logged_in=true;
           }
           else
           {
             cout << "You are successfully logged in!"<<endl;
+            logged_in_user_id=users_array[i].id;
             is_a_user_logged_in=true;
           }
           flag=true;
@@ -109,9 +111,22 @@ void admin_menu ()
 {
   cout << "Hey there! you're an admin";
 }
-void user_menu ()
+
+void user_menu (string user_id)
 {
-  cout << "Hey there! you're a user";
+  string profile_or_change_password=print_message_input_string("\n \n   1) Show me my profile\n   2) Change my password\n   [1/2]: ");
+  switch (profile_or_change_password) {
+
+    case 1:
+      show_profile(user_id);
+      break;
+
+    case 2:
+      change_password(user_id);
+      break;
+      
+
+  }
 }
 
 
