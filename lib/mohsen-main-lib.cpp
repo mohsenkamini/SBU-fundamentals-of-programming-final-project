@@ -26,6 +26,15 @@ string print_message_input_string (string message)
   return result;
 }
 
+int print_message_input_int (string message)
+{
+  int result;
+  cout << message;
+  cin >> result;
+  cout << endl;
+  return result;
+}
+
 user create_user (user* new_user) {
 
 
@@ -107,22 +116,49 @@ bool login (user users_array[], string user_id, string password) {
   return flag;
 }
 
-void admin_menu () 
+int index_of_username(user users_array[],string user_id)
+{
+  int i;
+  for (i=0 ; users_array[i].id != user_id ; i++);
+  return i;
+}
+
+void admin_menu (user users_array[],string user_id) 
 {
   cout << "Hey there! you're an admin";
 }
 
-void user_menu (string user_id)
+void change_password(user users_array[],string user_id)
 {
-  string profile_or_change_password=print_message_input_string("\n \n   1) Show me my profile\n   2) Change my password\n   [1/2]: ");
+  cout << "to be made";
+}
+
+
+void show_profile(user users_array[],string user_id)
+{
+  int i=index_of_username(users_array, user_id);
+  cout << "First name: " << users_array[i].first_name << endl;
+  cout << "Last name: " << users_array[i].last_name << endl;
+  cout << "Phone number: " << users_array[i].phone_number << endl;
+  cout << "ID: " << users_array[i].id << endl;
+  cout << "Password: " << "********" << endl;
+  cout << "Major: " << users_array[i].major << endl;
+  cout << "Degree level: " << users_array[i].degree_level << endl;
+  cout << "admin state: " << users_array[i].is_admin << endl;
+
+}
+
+void user_menu (user users_array[], string user_id)
+{
+  int profile_or_change_password=print_message_input_int("\n \n   1) Show me my profile\n   2) Change my password\n   [1/2]: ");
   switch (profile_or_change_password) {
 
     case 1:
-      show_profile(user_id);
+      show_profile(users_array, user_id);
       break;
 
     case 2:
-      change_password(user_id);
+      change_password(users_array, user_id);
       break;
       
 
@@ -138,10 +174,12 @@ void general_menu (user users_array[]) {
       switch (is_an_admin_logged_in)
       {
         case 1:
-          admin_menu();
+          admin_menu(users_array, logged_in_user_id);
+          general_menu(users_array);
           break;
         case 0:
-          user_menu();
+          user_menu(users_array, logged_in_user_id);
+          general_menu(users_array);
           break;
       }
       break;  

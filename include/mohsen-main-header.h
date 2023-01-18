@@ -25,7 +25,7 @@ void admin_menu (user users_array[],string user_id);
 
 void user_menu (user users_array[],string user_id);
 
-void show_profile(string user_id);
+void show_profile(user users_array[],string user_id);
 
-void change_password(string user_id);
+void change_password(user users_array[],string user_id);
 

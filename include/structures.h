@@ -6,16 +6,6 @@ using namespace std;
 
 struct user {
     
-    //char first_name[name_max_length];
-    //char last_name[name_max_length];
-    //char phone_number[phone_number_size];
-    //
-    //char id[name_max_length];
-    //char password[name_max_length]; // or could be password_hash
-    //
-    //char major[name_max_length];
-    //char degree_level[name_max_length];
-
     string first_name;
     string last_name;
     string phone_number;
