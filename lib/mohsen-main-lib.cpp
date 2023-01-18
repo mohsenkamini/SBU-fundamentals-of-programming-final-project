@@ -21,7 +21,10 @@ string print_message_input_string (string message)
 {
   string result;
   cout << message;
-  getline(cin,result);
+  do {
+    getline(cin,result);
+  }
+  while(result == "\n");
   cout << endl;
   return result;
 }
@@ -30,7 +33,9 @@ int print_message_input_int (string message)
 {
   int result;
   cout << message;
-  cin >> result;
+  while((result=getchar()) == '\n');
+
+  result -= '0';
   cout << endl;
   return result;
 }
@@ -139,8 +144,10 @@ void change_password(user users_array[],string user_id)
     cout << "\n Password successfully changed." << endl;
   }
   else
+  {
+    cout << current_password<< endl <<endl;
     print_warning("\nSorry! the password you provided did not match your current password!");
-
+  }
 }
 
 
