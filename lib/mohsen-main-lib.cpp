@@ -130,7 +130,17 @@ void admin_menu (user users_array[],string user_id)
 
 void change_password(user users_array[],string user_id)
 {
-  cout << "to be made";
+  string current_password=print_message_input_string("\nPlease enter your current password: ");
+  int i=index_of_username(users_array,user_id);
+  if (current_password == users_array[i].password)
+  {  
+    string new_password=print_message_input_string  ("\n                  new password: ");
+    users_array[i].password = new_password; 
+    cout << "\n Password successfully changed." << endl;
+  }
+  else
+    print_warning("\nSorry! the password you provided did not match your current password!");
+
 }
 
 
