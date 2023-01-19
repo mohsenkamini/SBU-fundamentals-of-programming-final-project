@@ -129,6 +129,11 @@ void admin_menu (user users_array[],string user_id)
   cout << "Hey there! you're an admin";
 }
 
+void dining_menu (user users_array[],string user_id) 
+{
+  cout << "to be made";
+}
+
 void change_password(user users_array[],string user_id)
 {
   string current_password=print_message_input_string("\nPlease enter your current password: ");
@@ -161,19 +166,39 @@ void show_profile(user users_array[],string user_id)
 
 }
 
-void user_menu (user users_array[], string user_id)
+ void account_menu (user users_array[], string user_id)
 {
-  int profile_or_change_password=print_message_input_int("\n \n   1) Show me my profile\n   2) Change my password\n   [1/2]: ");
+  int profile_or_change_password=print_message_input_int("\n \n   1) Show me my profile\n   2) Change my password\n   3) back\n   [1/2/3]: ");
   switch (profile_or_change_password) {
 
     case 1:
       show_profile(users_array, user_id);
+      account_menu(users_array, user_id);
       break;
 
     case 2:
       change_password(users_array, user_id);
+      account_menu(users_array, user_id);
       break;
-      
+    case 3:
+      break;      
+
+  }
+}
+
+void user_menu (user users_array[], string user_id)
+{
+  int dining_or_account=print_message_input_int("\n \n   1) Dining system\n   2) My account\n   [1/2]: ");
+  switch (dining_or_account) {
+
+    case 1:
+      dining_menu(users_array, user_id);
+      break;
+
+    case 2:
+      account_menu(users_array, user_id);
+      break;
+    
 
   }
 }
