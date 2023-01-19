@@ -21,10 +21,8 @@ string print_message_input_string (string message)
 {
   string result;
   cout << message;
-  do {
-    getline(cin,result);
-  }
-  while(result == "\n");
+  getline(cin >> ws,result);
+  // >> ws removes any whitespace from input
   cout << endl;
   return result;
 }
@@ -33,9 +31,7 @@ int print_message_input_int (string message)
 {
   int result;
   cout << message;
-  while((result=getchar()) == '\n');
-
-  result -= '0';
+  cin >> result;
   cout << endl;
   return result;
 }
