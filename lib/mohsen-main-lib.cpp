@@ -36,6 +36,15 @@ int print_message_input_int (string message)
   return result;
 }
 
+float print_message_input_float (string message)
+{
+  float result;
+  cout << message;
+  cin >> result;
+  cout << endl;
+  return result;
+}
+
 user create_user (user* new_user) {
 
 
@@ -124,7 +133,7 @@ void logout () {
   is_an_admin_logged_in=false;
 }
 
-int index_of_username(user users_array[],string user_id)
+int index_of_user_id(user users_array[],string user_id)
 {
   int i;
   for (i=0 ; users_array[i].id != user_id ; i++);
@@ -136,15 +145,43 @@ void admin_menu (user users_array[],string user_id)
   cout << "Hey there! you're an admin";
 }
 
+
+void charge_wallet (user users_array[],string user_id,float amount) 
+{
+  users_array[index_of_user_id(users_array, user_id)].wallet_balance += amount;
+} 
+
+
 void dining_menu (user users_array[],string user_id) 
 {
-  cout << "to be made";
+  int reserve_or_charge=print_message_input_int("\n \n   1) Reserve\n   2) Add money to balance\n   3) back\n   4) logout\n   [1/2/3/4]: ");
+  switch (reserve_or_charge)
+  {
+    case 1:
+      cout << "to be made";
+      dining_menu(users_array, user_id);
+      break;
+
+    case 2:
+      {
+        float amount=print_message_input_float("\nHow much do you want to increase your wallet? [in \"hezar Toman\"]: ");
+        charge_wallet(users_array, user_id,amount);
+        cout << "\nYour balance is increased by " << amount << " hezar Toman!" << endl;
+        dining_menu(users_array, user_id);
+        break;
+      }
+    case 3:
+      break;      
+    case 4:
+      logout();
+      break;
+  }
 }
 
 void change_password(user users_array[],string user_id)
 {
   string current_password=print_message_input_string("\nPlease enter your current password: ");
-  int i=index_of_username(users_array,user_id);
+  int i=index_of_user_id(users_array,user_id);
   if (current_password == users_array[i].password)
   {  
     string new_password=print_message_input_string  ("\n                  new password: ");
@@ -161,7 +198,7 @@ void change_password(user users_array[],string user_id)
 
 void show_profile(user users_array[],string user_id)
 {
-  int i=index_of_username(users_array, user_id);
+  int i=index_of_user_id(users_array, user_id);
   cout << "First name: " << users_array[i].first_name << endl;
   cout << "Last name: " << users_array[i].last_name << endl;
   cout << "Phone number: " << users_array[i].phone_number << endl;
@@ -169,6 +206,7 @@ void show_profile(user users_array[],string user_id)
   cout << "Password: " << "********" << endl;
   cout << "Major: " << users_array[i].major << endl;
   cout << "Degree level: " << users_array[i].degree_level << endl;
+  cout << "Wallet balance: " << users_array[i].wallet_balance << endl;
   cout << "admin state: " << users_array[i].is_admin << endl;
 
 }

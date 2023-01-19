@@ -17,7 +17,7 @@ struct user {
     string degree_level;
 
     //const int initial_wallet_balance=0 ;
-    long int wallet_balance = 0;
+    float wallet_balance = 0;
 
     bool is_admin;
 };
@@ -26,5 +26,5 @@ struct food {
 
     int id;
     string name;
-    long int price;
+    float price;
 };  
