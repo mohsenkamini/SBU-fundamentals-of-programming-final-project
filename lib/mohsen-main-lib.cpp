@@ -117,6 +117,13 @@ bool login (user users_array[], string user_id, string password) {
   return flag;
 }
 
+void logout () {
+
+  logged_in_user_id="";
+  is_a_user_logged_in=false;
+  is_an_admin_logged_in=false;
+}
+
 int index_of_username(user users_array[],string user_id)
 {
   int i;
@@ -168,7 +175,7 @@ void show_profile(user users_array[],string user_id)
 
  void account_menu (user users_array[], string user_id)
 {
-  int profile_or_change_password=print_message_input_int("\n \n   1) Show me my profile\n   2) Change my password\n   3) back\n   [1/2/3]: ");
+  int profile_or_change_password=print_message_input_int("\n \n   1) Show me my profile\n   2) Change my password\n   3) back\n   4) logout\n   [1/2/3/4]: ");
   switch (profile_or_change_password) {
 
     case 1:
@@ -182,13 +189,15 @@ void show_profile(user users_array[],string user_id)
       break;
     case 3:
       break;      
-
+    case 4:
+      logout();
+      break;
   }
 }
 
 void user_menu (user users_array[], string user_id)
 {
-  int dining_or_account=print_message_input_int("\n \n   1) Dining system\n   2) My account\n   [1/2]: ");
+  int dining_or_account=print_message_input_int("\n \n   1) Dining system\n   2) My account\n   3) logout\n   [1/2/3]: ");
   switch (dining_or_account) {
 
     case 1:
@@ -197,6 +206,9 @@ void user_menu (user users_array[], string user_id)
 
     case 2:
       account_menu(users_array, user_id);
+      break;
+    case 3:
+      logout();
       break;
     
 
