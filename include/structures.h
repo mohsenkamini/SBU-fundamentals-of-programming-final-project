@@ -32,9 +32,9 @@ struct food {
 struct date {
 
     string dow;        // Sat,Sun,Mon,Tues,Wed,Thurs
-    string dom;        
+    int dom;        
     string month;       // Jan,Feb,Mar,Apr,May,Jun,Jul,Sep,Oct,Nov,Dec
-    string year;
+    int year;
 };
 
 struct food_item {

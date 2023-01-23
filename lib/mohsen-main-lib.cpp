@@ -156,12 +156,12 @@ date translate_ctime (string string_from_ctime) {
   result.month=string_from_ctime.substr(0,string_from_ctime.find(' '));
 
   string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
-  result.dom=string_from_ctime.substr(0,string_from_ctime.find(' '));
+  result.dom=stoi( string_from_ctime.substr(0,string_from_ctime.find(' ')) );
 
   string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
 
   string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
-  result.year=string_from_ctime.substr(0,string_from_ctime.find(' '));
+  result.year=stoi( string_from_ctime.substr(0,string_from_ctime.find(' ')) );
 
   return result;
 }
@@ -175,7 +175,10 @@ date todays_date () {
   return result;
 }
 
+int compare_dates (date dt1, date dt2) {
 
+  
+}
 
 
 

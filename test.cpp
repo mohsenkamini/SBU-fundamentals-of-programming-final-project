@@ -48,9 +48,9 @@ int main() {
 
   date today=todays_date();
     cout << today.dow << endl;        // Sat,Sun,Mon,Tues,Wed,Thurs
-    cout << today.dom << endl;        
+    cout << today.dom-1 << endl;        
     cout << today.month << endl;       // Jan,Feb,Mar,Apr,May,Jun,Jul,Sep,Oct,Nov,Dec
-    cout << today.year << endl;
+    cout << today.year+1 << endl;
 
   return(0);
 }
