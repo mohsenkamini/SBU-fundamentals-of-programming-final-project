@@ -2,6 +2,7 @@
 
 #ifndef max_number_of_users
 #define max_number_of_users 200
+#define max_number_of_food_plans 365
 #endif
 
 void print_warning (char* text);
