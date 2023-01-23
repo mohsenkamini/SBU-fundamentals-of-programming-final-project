@@ -147,13 +147,32 @@ int index_of_user_id(user users_array[],string user_id)
   return i;
 }
 
+date translate_ctime (string string_from_ctime) {
+  date result;
+  
+  result.dow=string_from_ctime.substr(0,string_from_ctime.find(' '));
+  
+  string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
+  result.month=string_from_ctime.substr(0,string_from_ctime.find(' '));
 
+  string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
+  result.dom=string_from_ctime.substr(0,string_from_ctime.find(' '));
+
+  string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
+
+  string_from_ctime=string_from_ctime.substr(string_from_ctime.find(' ')+1);
+  result.year=string_from_ctime.substr(0,string_from_ctime.find(' '));
+
+  return result;
+}
 
 date todays_date () {
-  date today;
+  date result;
   time_t now = time(0);
   string dt = ctime(&now);
-  return today;
+  cout << dt;
+  result=translate_ctime(dt);
+  return result;
 }
 
 

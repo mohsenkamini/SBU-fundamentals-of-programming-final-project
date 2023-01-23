@@ -29,3 +29,9 @@ void show_profile(user users_array[],string user_id);
 
 void change_password(user users_array[],string user_id);
 
+
+
+
+// date
+
+date todays_date ();

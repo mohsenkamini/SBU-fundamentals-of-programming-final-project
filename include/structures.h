@@ -35,12 +35,12 @@ struct date {
     string dom;        
     string month;       // Jan,Feb,Mar,Apr,May,Jun,Jul,Sep,Oct,Nov,Dec
     string year;
-}
+};
 
 struct food_item {
     date dt;
     food fd;
-}
+};
 
 enum self {
     central,dorm
