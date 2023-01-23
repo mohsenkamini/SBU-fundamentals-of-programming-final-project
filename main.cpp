@@ -1,6 +1,7 @@
 #include <mohsen-main-header.h>
 #include <iostream>
 #include <string>
+#include <ctime>  // only used to get the current time of the system
 
 using namespace std;
 

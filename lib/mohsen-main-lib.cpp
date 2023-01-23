@@ -2,6 +2,7 @@
 #include <mohsen-main-header.h>
 #include <global_vars.h>
 #include <string>
+#include <ctime>  // only used to get the current time of the system
 
 //#include <structures.h>
 using namespace std;
@@ -44,6 +45,12 @@ float print_message_input_float (string message)
   cout << endl;
   return result;
 }
+
+
+
+
+
+
 
 user create_user (user* new_user) {
 
@@ -139,6 +146,23 @@ int index_of_user_id(user users_array[],string user_id)
   for (i=0 ; users_array[i].id != user_id ; i++);
   return i;
 }
+
+
+
+date todays_date () {
+  date today;
+  time_t now = time(0);
+  string dt = ctime(&now);
+  return today;
+}
+
+
+
+
+
+
+
+
 
 void admin_menu (user users_array[],string user_id) 
 {

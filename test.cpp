@@ -1,6 +1,7 @@
 #include <mohsen-main-header.h>
 #include <iostream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -37,7 +38,13 @@ int main() {
 
   // General Menu
   //general_menu(list_of_users);
-  print_warning("test warn");
-  cout << "something";
+  //print_warning("test warn");
+  //cout << "something";
+
+  // test time
+  time_t now = time(0);
+  string dt = ctime(&now);
+  cout << dt ;
+
   return(0);
 }
