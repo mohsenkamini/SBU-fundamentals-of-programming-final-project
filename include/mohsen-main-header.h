@@ -3,6 +3,9 @@
 #ifndef max_number_of_users
 #define max_number_of_users 200
 #define max_number_of_food_plans 365
+#define number_of_days_in_year 365
+#define number_of_days_in_month 30
+#define number_of_months 12
 #endif
 
 void print_warning (char* text);
@@ -36,3 +39,4 @@ void change_password(user users_array[],string user_id);
 // date
 
 date todays_date ();
+int compare_dates (date dt1, date dt2);

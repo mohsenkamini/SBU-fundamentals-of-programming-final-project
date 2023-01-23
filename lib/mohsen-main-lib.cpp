@@ -175,8 +175,24 @@ date todays_date () {
   return result;
 }
 
+
+int index_of_month (string months[],int size, string dt_month) {
+
+  for (int i=0 ; i < size; i++)
+  {
+    if (dt_month == months[i])
+      return i;
+  }
+}
+
 int compare_dates (date dt1, date dt2) {
 
+  // This function returns the number of days 
+  // it takes to go from dt1 to dt2
+  
+  int result=0; 
+  result = ( ((dt2.year-dt1.year)*number_of_days_in_year) + ((index_of_month(months,number_of_months,dt2.month) - index_of_month(months,number_of_months,dt1.month) )*number_of_days_in_month) + (dt2.dom - dt1.dom) );
+  return result;
   
 }
 

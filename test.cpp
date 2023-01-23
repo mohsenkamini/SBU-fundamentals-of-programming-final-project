@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+//#include <global_vars.h>
 
 using namespace std;
 
@@ -52,5 +53,9 @@ int main() {
     cout << today.month << endl;       // Jan,Feb,Mar,Apr,May,Jun,Jul,Sep,Oct,Nov,Dec
     cout << today.year+1 << endl;
 
+  date yesterday=today;
+  yesterday.dom--;
+
+  cout << compare_dates (today,yesterday);
   return(0);
 }
