@@ -273,7 +273,7 @@ void add_new_food_item (food_item dining[],int index) {
   dining[index].supply= print_message_input_int   ("         enter supply amount: ");
 }
 
-void show_week_food_plan(food_item dining[],int index) {
+void show_week_food_plan_admin(food_item dining[],int index) {
 
   for (int i=index; i < index+7 ; i++)
   {
@@ -288,14 +288,34 @@ void show_week_food_plan(food_item dining[],int index) {
 
 }
 
-void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
+bool is_resevered_for_userid (food_item dining[],int index, string user_id) {
+  return false; //temporary
+}
 
-  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n   2) Dorm\n   3) logout\n   [1/2/3]:");
+void show_week_food_plan_user(food_item dining[],int index,string user_id) {
+
+  for (int i=index; i < index+7 ; i++)
+  {
+    cout << "Plan " << i << ")\n";
+    cout << dining[i].dt.dow << "  ";    
+    cout << dining[i].dt.dom << "  ";    
+    cout << dining[i].dt.month << "  ";  
+    cout << dining[i].dt.year << endl ;
+    cout << "Defined food for "<< i << ": " ; 
+    cout << dining[i].fd.name << " Supply: " <<dining[i].supply<< " Price: " <<dining[i].fd.price<< endl;
+    cout << "Reserveration status: " << is_resevered_for_userid(dining,index,user_id)  <<endl << endl;
+  }
+
+}
+
+void add_new_food_item_menu(food_item central_dining[],food_item  dorm_dining[]) {
+
+ int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n   2) Dorm\n   3) logout\n   [1/2/3]:");
   switch (central_or_dorm){
     case 1:
       for (int i=0 ; i < max_number_of_food_plans ; i+=7)
       {
-      show_week_food_plan(central_dining,i);
+      show_week_food_plan_admin(central_dining,i);
       int plan_number=print_message_input_int("Choose Plan number: [0/1/2/.../-1(show next week plan)]: ");
       
       if (plan_number == -1)
@@ -309,13 +329,101 @@ void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[])
     case 2:
       for (int i=0 ; i < max_number_of_food_plans ; i+=7)
       {
-      show_week_food_plan(dorm_dining,i);
+      show_week_food_plan_admin(dorm_dining,i);
       int plan_number=print_message_input_int("Choose Plan number: [0/1/2/.../-1(show next week plan)]: ");
       
       if (plan_number == -1)
         continue;
 
       add_new_food_item(dorm_dining,plan_number);
+      break;
+      
+      }
+      break;
+      case 3:
+      logout(); 
+  }
+}
+
+void reserve_food_item(user list_of_users[] ,food_item dining[],int plan_number,string user_id) {
+
+  if (compare_dates(todays_date(),dining[plan_number].dt) < 2 )
+  {
+    cout << "\nYou cannot reserve a food plan for this date." << endl;
+    return;
+  }
+
+  
+
+  if (dining[plan_number].supply == 0 )
+  {
+    cout << "\nThere are no more supply of this food Plan."<< endl;
+    return;
+  }
+  
+  int half_or_full=print_message_input_int("\nDo you want 1) Half or 2) full? [1/2]: ");
+  switch (half_or_full) {
+    case 1:
+      if ( (dining[plan_number].fd.price*0.5) > list_of_users[index_of_user_id(list_of_users, user_id)].wallet_balance  )
+      {
+        cout << "\nNOT ENOUGH MONEY!"<< endl;
+        return;
+      }
+      dining[plan_number].supply -= 0.5;
+      dining[plan_number].reserved_by[dining[plan_number].reserved_by_index]=user_id;
+      dining[plan_number].reserved_by_index++;
+      list_of_users[index_of_user_id(list_of_users, user_id)].wallet_balance -= (0.5*dining[plan_number].fd.price) ;
+
+      break;
+    
+    case 2:
+      if (dining[plan_number].supply == 0.5 )
+      {
+        cout << "\nThere are only 0.5 supply of this food Plan."<< endl;
+        return;
+      }
+      if ( dining[plan_number].fd.price > list_of_users[index_of_user_id(list_of_users, user_id)].wallet_balance  )
+      {
+        cout << "\nNOT ENOUGH MONEY!"<< endl;
+        return;
+      }
+
+      dining[plan_number].supply -= 1;
+      dining[plan_number].reserved_by[dining[plan_number].reserved_by_index]=user_id;
+      dining[plan_number].reserved_by_index++;
+      list_of_users[index_of_user_id(list_of_users, user_id)].wallet_balance -= (dining[plan_number].fd.price) ;
+  }
+}
+
+
+void reserve_food_item_menu (user list_of_users[] ,food_item central_dining[],food_item dorm_dining[],string user_id) {
+
+  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n   2) Dorm\n   3) logout\n   [1/2/3]:");
+  switch (central_or_dorm){
+    case 1:
+      for (int i=0 ; i < max_number_of_food_plans ; i+=7)
+      {
+      show_week_food_plan_user(central_dining,i,user_id);
+      int plan_number=print_message_input_int("Choose Plan number: [0/1/2/.../-1(show next week plan)]: ");
+      
+      if (plan_number == -1)
+        continue;
+
+      reserve_food_item(list_of_users,central_dining,plan_number,user_id);
+      break;
+      
+      }
+      break;
+    case 2:
+      for (int i=0 ; i < max_number_of_food_plans ; i+=7)
+      {
+      show_week_food_plan_admin(dorm_dining,i);
+      int plan_number=print_message_input_int("Choose Plan number: [0/1/2/.../-1(show next week plan)]: ");
+      
+      if (plan_number == -1)
+        continue;
+
+      reserve_food_item(list_of_users,dorm_dining,plan_number,user_id);
       break;
       
       }
@@ -343,14 +451,14 @@ void charge_wallet (user users_array[],string user_id,float amount)
 } 
 
 
-void dining_menu (user users_array[],string user_id) 
+void dining_menu (food_item central_dining[],food_item dorm_dining[],user users_array[],string user_id) 
 {
   int reserve_or_charge=print_message_input_int("\n \n   1) Reserve\n   2) Add money to balance\n   3) back\n   4) logout\n   [1/2/3/4]: ");
   switch (reserve_or_charge)
   {
     case 1:
-      cout << "to be made";
-      dining_menu(users_array, user_id);
+      reserve_food_item_menu(users_array, central_dining,dorm_dining,user_id);
+      dining_menu(central_dining,dorm_dining,users_array, user_id);
       break;
 
     case 2:
@@ -358,7 +466,7 @@ void dining_menu (user users_array[],string user_id)
         float amount=print_message_input_float("\nHow much do you want to increase your wallet? [in \"hezar Toman\"]: ");
         charge_wallet(users_array, user_id,amount);
         cout << "\nYour balance is increased by " << amount << " hezar Toman!" << endl;
-        dining_menu(users_array, user_id);
+        dining_menu(central_dining,dorm_dining,users_array, user_id);
         break;
       }
     case 3:
@@ -424,13 +532,13 @@ void show_profile(user users_array[],string user_id)
   }
 }
 
-void user_menu (user users_array[], string user_id)
+void user_menu (food_item central_dining[],food_item dorm_dining[],user users_array[], string user_id)
 {
   int dining_or_account=print_message_input_int("\n \n   1) Dining system\n   2) My account\n   3) logout\n   [1/2/3]: ");
   switch (dining_or_account) {
 
     case 1:
-      dining_menu(users_array, user_id);
+      dining_menu(central_dining,dorm_dining,users_array, user_id);
       break;
 
     case 2:
@@ -457,7 +565,7 @@ void general_menu (user users_array[],food_item central_dining[] , food_item dor
           general_menu(users_array,central_dining,dorm_dining);
           break;
         case 0:
-          user_menu(users_array, logged_in_user_id);
+          user_menu(central_dining,dorm_dining,users_array, logged_in_user_id);
           general_menu(users_array,central_dining,dorm_dining);
           break;
       }

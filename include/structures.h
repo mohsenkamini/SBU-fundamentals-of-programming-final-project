@@ -42,6 +42,7 @@ struct food_item {
     food fd;
     int supply;     // how many of that food we have to offer
     string reserved_by[max_number_of_users];
+    int reserved_by_index;
 };
 
 enum self {
