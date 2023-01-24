@@ -306,6 +306,18 @@ void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[])
       }
       break;
     case 2:
+      for (int i=0 ; i < max_number_of_food_plans ; i+=7)
+      {
+      show_week_food_plan(dorm_dining,i);
+      int plan_number=print_message_input_int("Choose Plan number: [0/1/2/.../-1(show next week plan)]: ");
+      
+      if (plan_number == -1)
+        continue;
+
+      add_new_food_item(dorm_dining,plan_number);
+      break;
+      
+      }
       break;
 
   }
