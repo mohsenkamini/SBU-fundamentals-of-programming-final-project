@@ -40,6 +40,7 @@ struct date {
 struct food_item {
     date dt;
     food fd;
+    int supply;     // how many of that food we have to offer
 };
 
 enum self {
