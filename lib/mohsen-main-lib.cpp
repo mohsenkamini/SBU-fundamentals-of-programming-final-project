@@ -289,6 +289,11 @@ void show_week_food_plan_admin(food_item dining[],int index) {
 }
 
 bool is_resevered_for_userid (food_item dining[],int index, string user_id) {
+  for (int i=0 ; i < max_number_of_users ; i++)
+  {
+    if (dining[index].reserved_by[i] == user_id)
+      return true;
+  }
   return false; //temporary
 }
 
@@ -347,6 +352,12 @@ void add_new_food_item_menu(food_item central_dining[],food_item  dorm_dining[])
 
 void reserve_food_item(user list_of_users[] ,food_item dining[],int plan_number,string user_id) {
 
+  if (is_resevered_for_userid (dining,plan_number,user_id))
+  {
+    cout << "\nYou have already reserved this food item!";
+    return;
+  }
+  
   if (compare_dates(todays_date(),dining[plan_number].dt) < 2 )
   {
     cout << "\nYou cannot reserve a food plan for this date." << endl;
