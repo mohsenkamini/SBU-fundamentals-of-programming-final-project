@@ -269,7 +269,8 @@ void initiate_calendar (food_item dining[],int size,date today) {
 void add_new_food_item (food_item dining[],int index) {
   
   dining[index].fd.name=print_message_input_string("\nPlease enter food name: ");
-  dining[index].supply= print_message_input_int   ("          enter amount: ");
+  dining[index].fd.price= print_message_input_int ("enter price (in hezar Toman): ");
+  dining[index].supply= print_message_input_int   ("         enter supply amount: ");
 }
 
 void show_week_food_plan(food_item dining[],int index) {
@@ -282,7 +283,7 @@ void show_week_food_plan(food_item dining[],int index) {
     cout << dining[i].dt.month << "  ";  
     cout << dining[i].dt.year << endl ;
     cout << "Defined food for "<< i << ": " ; 
-    cout << dining[i].fd.name << " Supply: " <<dining[i].supply<< endl << endl;
+    cout << dining[i].fd.name << " Supply: " <<dining[i].supply<< " Price: " <<dining[i].fd.price<< endl << endl;
   }
 
 }
