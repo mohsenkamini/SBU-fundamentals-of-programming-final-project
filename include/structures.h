@@ -40,9 +40,9 @@ struct date {
 struct food_item {
     date dt;
     food fd;
-    int supply;     // how many of that food we have to offer
+    float supply;     // how many of that food we have to offer
     string reserved_by[max_number_of_users];
-    int reserved_by_index;
+    int reserved_by_index =0;
 };
 
 enum self {

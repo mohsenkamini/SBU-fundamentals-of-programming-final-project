@@ -3,6 +3,8 @@
 #include <global_vars.h>
 #include <string>
 #include <ctime>  // only used to get the current time of the system
+#include <iomanip>
+
 
 //#include <structures.h>
 using namespace std;
@@ -270,7 +272,7 @@ void add_new_food_item (food_item dining[],int index) {
   
   dining[index].fd.name=print_message_input_string("\nPlease enter food name: ");
   dining[index].fd.price= print_message_input_int ("enter price (in hezar Toman): ");
-  dining[index].supply= print_message_input_int   ("         enter supply amount: ");
+  dining[index].supply= print_message_input_float   ("         enter supply amount: ");
 }
 
 void show_week_food_plan_admin(food_item dining[],int index) {
@@ -283,7 +285,7 @@ void show_week_food_plan_admin(food_item dining[],int index) {
     cout << dining[i].dt.month << "  ";  
     cout << dining[i].dt.year << endl ;
     cout << "Defined food for "<< i << ": " ; 
-    cout << dining[i].fd.name << " Supply: " <<dining[i].supply<< " Price: " <<dining[i].fd.price<< endl << endl;
+    cout << dining[i].fd.name << " Supply: " << std::fixed << std::setprecision(1) << dining[i].supply<< " Price: " <<dining[i].fd.price<< endl << endl;
   }
 
 }
@@ -308,7 +310,7 @@ void show_week_food_plan_user(food_item dining[],int index,string user_id) {
     cout << dining[i].dt.year << endl ;
     cout << "Defined food for "<< i << ": " ; 
     cout << dining[i].fd.name << " Supply: " <<dining[i].supply<< " Price: " <<dining[i].fd.price<< endl;
-    cout << "Reserveration status: " << is_resevered_for_userid(dining,index,user_id)  <<endl << endl;
+    cout << "Reserveration status: " << is_resevered_for_userid(dining,i,user_id)  <<endl << endl;
   }
 
 }
@@ -384,7 +386,7 @@ void reserve_food_item(user list_of_users[] ,food_item dining[],int plan_number,
       dining[plan_number].reserved_by[dining[plan_number].reserved_by_index]=user_id;
       dining[plan_number].reserved_by_index++;
       list_of_users[index_of_user_id(list_of_users, user_id)].wallet_balance -= (0.5*dining[plan_number].fd.price) ;
-
+      cout << "\nThe food item " << plan_number << " is successfully reserved for you!";
       break;
     
     case 2:
@@ -403,6 +405,7 @@ void reserve_food_item(user list_of_users[] ,food_item dining[],int plan_number,
       dining[plan_number].reserved_by[dining[plan_number].reserved_by_index]=user_id;
       dining[plan_number].reserved_by_index++;
       list_of_users[index_of_user_id(list_of_users, user_id)].wallet_balance -= (dining[plan_number].fd.price) ;
+      cout << "\nThe food item " << plan_number << " is successfully reserved for you!";
   }
 }
 
@@ -590,7 +593,8 @@ void general_menu (user users_array[],food_item central_dining[] , food_item dor
         else
           cout << "This program cannot hold more than "<< max_number_of_users << " users. Please consult the administrator";
       }
-      login_prompt(users_array);
+      else
+        login_prompt(users_array);
       general_menu(users_array,central_dining,dorm_dining);
       break;
   }
