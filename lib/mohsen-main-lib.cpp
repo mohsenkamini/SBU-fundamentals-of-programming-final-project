@@ -289,7 +289,7 @@ void show_week_food_plan(food_item dining[],int index) {
 
 void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
 
-  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n   2) Dorm [1/2]:");
+  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n   2) Dorm\n   3) logout\n   [1/2/3]:");
   switch (central_or_dorm){
     case 1:
       for (int i=0 ; i < max_number_of_food_plans ; i+=7)
@@ -319,7 +319,8 @@ void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[])
       
       }
       break;
-
+      case 3:
+      logout();
   }
 
 }
@@ -328,9 +329,10 @@ void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[])
 
 
 
-void admin_menu (user users_array[],string user_id) 
+void admin_menu (user users_array[],string user_id,food_item central_dining[] , food_item dorm_dining[]) 
 {
-  cout << "Hey there! you're an admin";
+  cout << "You can add food items in weekly tables here!\n";
+  add_new_food_item_menu (central_dining,dorm_dining);
 }
 
 
@@ -442,7 +444,7 @@ void user_menu (user users_array[], string user_id)
 }
 
 
-void general_menu (user users_array[]) {
+void general_menu (user users_array[],food_item central_dining[] , food_item dorm_dining[]) {
 
   switch (is_a_user_logged_in)
   {
@@ -450,12 +452,12 @@ void general_menu (user users_array[]) {
       switch (is_an_admin_logged_in)
       {
         case 1:
-          admin_menu(users_array, logged_in_user_id);
-          general_menu(users_array);
+          admin_menu(users_array, logged_in_user_id,central_dining,dorm_dining);
+          general_menu(users_array,central_dining,dorm_dining);
           break;
         case 0:
           user_menu(users_array, logged_in_user_id);
-          general_menu(users_array);
+          general_menu(users_array,central_dining,dorm_dining);
           break;
       }
       break;  
@@ -469,7 +471,7 @@ void general_menu (user users_array[]) {
           cout << "This program cannot hold more than "<< max_number_of_users << " users. Please consult the administrator";
       }
       login_prompt(users_array);
-      general_menu(users_array);
+      general_menu(users_array,central_dining,dorm_dining);
       break;
   }
 }

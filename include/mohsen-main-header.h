@@ -25,7 +25,7 @@ bool login_prompt (user users_array[]);
 
 // MENU
 
-void general_menu (user users_array[]);
+void general_menu (user users_array[],food_item central_dining[] , food_item dorm_dining[]);
 
 void admin_menu (user users_array[],string user_id);
 

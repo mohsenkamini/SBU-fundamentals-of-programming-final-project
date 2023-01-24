@@ -16,7 +16,7 @@ int main() {
   initiate_calendar(central_dining,max_number_of_food_plans,todays_date());
   initiate_calendar(dorm_dining,max_number_of_food_plans,todays_date());
 
-  general_menu(list_of_users);
+  general_menu(list_of_users,central_dining,dorm_dining);
 
   return(0);
 }
