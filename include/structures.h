@@ -25,7 +25,6 @@ struct user {
 
 struct food {
 
-    int id;
     string name;
     float price;
 };  
@@ -42,7 +41,7 @@ struct food_item {
     date dt;
     food fd;
     int supply;     // how many of that food we have to offer
-    string reserved_by[200];
+    string reserved_by[max_number_of_users];
 };
 
 enum self {

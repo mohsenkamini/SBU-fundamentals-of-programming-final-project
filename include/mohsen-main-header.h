@@ -7,6 +7,7 @@
 #define number_of_days_in_month 30
 #define number_of_months 12
 #define number_of_dow 7
+#define number_of_foods 30
 #endif
 
 void print_warning (char* text);
@@ -43,3 +44,9 @@ date todays_date ();
 int compare_dates (date dt1, date dt2);
 void initiate_calendar (food_item dining[],int size,date today);
 string incremented_dow (string dow);
+
+
+// food item
+
+void show_week_food_plan(food_item dining[],int index) ;
+void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) ;

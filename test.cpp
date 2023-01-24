@@ -62,18 +62,20 @@ int main() {
   food_item central_dining[max_number_of_food_plans];
   food_item dorm_dining[max_number_of_food_plans];
 
-  cout << "1"<< endl;
+  //cout << "1"<< endl;
   initiate_calendar(central_dining,max_number_of_food_plans,todays_date());
-  cout << "1"<< endl;
+  //cout << "1"<< endl;
 
-  for (int i=0 ; i < number_of_days_in_year ; i++)
-  {
-    cout << i << ".\n " << central_dining[i].dt.dow << "  ";    
-    cout << central_dining[i].dt.dom << "  ";    
-    cout << central_dining[i].dt.month << "  ";  
-    cout << central_dining[i].dt.year << endl << endl;  
-    //cout << i << " " << dining[i].dt.dow <<endl;      
-  }
+  //for (int i=0 ; i < number_of_days_in_year ; i++)
+  //{
+  //  cout << i << ".\n " << central_dining[i].dt.dow << "  ";    
+  //  cout << central_dining[i].dt.dom << "  ";    
+  //  cout << central_dining[i].dt.month << "  ";  
+  //  cout << central_dining[i].dt.year << endl << endl;  
+  //  //cout << i << " " << dining[i].dt.dow <<endl;      
+  //}
    //cout << incremented_dow ("Tue");
+  add_new_food_item_menu (central_dining,dorm_dining);
+  add_new_food_item_menu (central_dining,dorm_dining);
   return(0);
 }

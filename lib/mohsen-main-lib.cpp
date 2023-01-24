@@ -264,23 +264,53 @@ void initiate_calendar (food_item dining[],int size,date today) {
 
 // Add food items
 
-void add_new_food_item (food_item dining[],int index,date item_dt,food item_fd,int item_supply) {
+
+
+void add_new_food_item (food_item dining[],int index) {
   
-  dining[index].dt=item_dt;
-  dining[index].fd=item_fd;
-  dining[index].supply=item_supply;
+  dining[index].fd.name=print_message_input_string("\nPlease enter food name: ");
+  dining[index].supply= print_message_input_int   ("          enter amount: ");
 }
 
-//food_item add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
-//
-//  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n    2) Dorm");
-//
-//  switch (central_or_dorm){
-//    case 1:
-//
-//  }
-//
-//}
+void show_week_food_plan(food_item dining[],int index) {
+
+  for (int i=index; i < index+7 ; i++)
+  {
+    cout << "Plan " << i << ")\n";
+    cout << dining[i].dt.dow << "  ";    
+    cout << dining[i].dt.dom << "  ";    
+    cout << dining[i].dt.month << "  ";  
+    cout << dining[i].dt.year << endl ;
+    cout << "Defined food for "<< i << ": " ; 
+    cout << dining[i].fd.name << " Supply: " <<dining[i].supply<< endl << endl;
+  }
+
+}
+
+void add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
+
+  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n   2) Dorm [1/2]:");
+  switch (central_or_dorm){
+    case 1:
+      for (int i=0 ; i < max_number_of_food_plans ; i+=7)
+      {
+      show_week_food_plan(central_dining,i);
+      int plan_number=print_message_input_int("Choose Plan number: [0/1/2/.../-1(show next week plan)]: ");
+      
+      if (plan_number == -1)
+        continue;
+
+      add_new_food_item(central_dining,plan_number);
+      break;
+      
+      }
+      break;
+    case 2:
+      break;
+
+  }
+
+}
 
 
 
