@@ -47,15 +47,32 @@ int main() {
   //string dt = ctime(&now);
   //cout << dt ;
 
-  date today=todays_date();
-    cout << today.dow << endl;        // Sat,Sun,Mon,Tues,Wed,Thurs
-    cout << today.dom-1 << endl;        
-    cout << today.month << endl;       // Jan,Feb,Mar,Apr,May,Jun,Jul,Sep,Oct,Nov,Dec
-    cout << today.year+1 << endl;
+  //date today=todays_date();
+  //  cout << today.dow << endl;        // Sat,Sun,Mon,Tues,Wed,Thurs
+  //  cout << today.dom-1 << endl;        
+  //  cout << today.month << endl;       // Jan,Feb,Mar,Apr,May,Jun,Jul,Sep,Oct,Nov,Dec
+  //  cout << today.year+1 << endl;
+//
+  //date yesterday=today;
+  //yesterday.dom--;
 
-  date yesterday=today;
-  yesterday.dom--;
+  //cout << compare_dates (today,yesterday);
 
-  cout << compare_dates (today,yesterday);
+  // testing initiating a calendar
+  food_item central_dining[max_number_of_food_plans];
+  food_item dorm_dining[max_number_of_food_plans];
+
+
+  initiate_calendar(central_dining,max_number_of_food_plans,todays_date(),days,months);
+
+  for (int i=0 ; i < max_number_of_food_plans ; i++)
+  {
+    cout << i << ".\n " << dining[i].dt.dow << "  ";    
+    cout << dining[i].dt.dom << "  ";    
+    cout << dining[i].dt.month << "  ";  
+    cout << dining[i].dt.year << endl << endl;  
+    //cout << i << " " << dining[i].dt.dow <<endl;      
+  }
+
   return(0);
 }

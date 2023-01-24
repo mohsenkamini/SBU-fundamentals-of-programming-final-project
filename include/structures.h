@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #define phone_number_size 12
-#define name_max_length 200
+#define name_max_length 
+#define max_number_of_users 200
 using namespace std;
 
 struct user {
