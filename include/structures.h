@@ -2,7 +2,7 @@
 #include <string>
 #define phone_number_size 12
 #define name_max_length 
-#define max_number_of_users 200
+#define max_number_of_users 100
 using namespace std;
 
 struct user {
@@ -42,7 +42,7 @@ struct food_item {
     date dt;
     food fd;
     int supply;     // how many of that food we have to offer
-    user reservees[max_number_of_users];
+    string reserved_by[200];
 };
 
 enum self {

@@ -13,8 +13,8 @@ int main() {
   food_item central_dining[max_number_of_food_plans];
   food_item dorm_dining[max_number_of_food_plans];
 
-  central_dining[0].dt=todays_date();
-  dorm_dining[0].dt=todays_date();
+  initiate_calendar(central_dining,max_number_of_food_plans,todays_date());
+  initiate_calendar(dorm_dining,max_number_of_food_plans,todays_date());
 
   general_menu(list_of_users);
 

@@ -174,7 +174,7 @@ date todays_date () {
   date result;
   time_t now = time(0);
   string dt = ctime(&now);
-  cout << dt;
+  //cout << dt;
   result=translate_ctime(dt);
   return result;
 }
@@ -208,23 +208,24 @@ int compare_dates (date dt1, date dt2) {
   
 }
 
-string incremented_dow (string days[],int size,string dow) {
+string incremented_dow (string dow) {
+  int size=number_of_dow;
   if (index_of_dow(days,size,dow) != number_of_dow-1 )
     return days[index_of_dow(days,size,dow)+1];
   
   return days[0];
 }
 
-void initiate_calendar (food_item dining[],int size,date today,string days[],string months[]) {
+void initiate_calendar (food_item dining[],int size,date today) {
 
   dining[0].dt=today;
   date base=today;
   for (int i=0 ; i < size-1 ; i++)
   {
-    if (base.dom+1 < number_of_days_in_month)
+    if (base.dom+1 <= number_of_days_in_month)
     {
       base.dom++;
-      base.dom=incremented_dow(days);
+      base.dow=incremented_dow(base.dow);
       dining[i+1].dt.dow=base.dow;
       dining[i+1].dt.dom=base.dom;
       dining[i+1].dt.month=base.month;
@@ -235,7 +236,7 @@ void initiate_calendar (food_item dining[],int size,date today,string days[],str
       if (index_of_month(months,number_of_months,base.month) != number_of_months-1)
       {
         base.dom=1;
-        base.dom=incremented_dow(days);
+        base.dow=incremented_dow(base.dow);
         dining[i+1].dt.dow=base.dow;
         base.month=months[index_of_month(months,number_of_months,base.month)+1];
 
@@ -246,9 +247,9 @@ void initiate_calendar (food_item dining[],int size,date today,string days[],str
       else
       {
         base.dom=1;
-        base.dom=incremented_dow(days);
+        base.dow=incremented_dow(base.dow);
         dining[i+1].dt.dow=base.dow;
-        
+
         base.month=months[0];
         base.year++;
 
@@ -270,16 +271,16 @@ void add_new_food_item (food_item dining[],int index,date item_dt,food item_fd,i
   dining[index].supply=item_supply;
 }
 
-food_item add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
-
-  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n    2) Dorm");
-
-  switch (central_or_dorm){
-    case 1:
-
-  }
-
-}
+//food_item add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
+//
+//  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n    2) Dorm");
+//
+//  switch (central_or_dorm){
+//    case 1:
+//
+//  }
+//
+//}
 
 
 

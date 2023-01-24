@@ -1,7 +1,7 @@
 #include <structures.h>
 
 #ifndef max_number_of_food_plans
-#define max_number_of_users 200
+#define max_number_of_users 100
 #define max_number_of_food_plans 365
 #define number_of_days_in_year 365
 #define number_of_days_in_month 30
@@ -41,4 +41,5 @@ void change_password(user users_array[],string user_id);
 
 date todays_date ();
 int compare_dates (date dt1, date dt2);
-void initiate_calendar (food_item dining[],int size,date today,string days[],string months[]);
+void initiate_calendar (food_item dining[],int size,date today);
+string incremented_dow (string dow);

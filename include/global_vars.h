@@ -4,6 +4,6 @@ bool is_an_admin_logged_in=false;
 int number_of_users=0;
 string logged_in_user_id;
 
-string days[7] = {"Sat","Sun","Mon","Tues","Wed","Thurs"}; 
+string days[7] = {"Sat","Sun","Mon","Tue","Wed","Thu","Fri"}; 
 
-string months[12] = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Sep","Oct","Nov","Dec"};
+string months[12] = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
