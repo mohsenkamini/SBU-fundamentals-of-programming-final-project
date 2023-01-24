@@ -147,6 +147,10 @@ int index_of_user_id(user users_array[],string user_id)
   return i;
 }
 
+
+
+// date related functions
+
 date translate_ctime (string string_from_ctime) {
   date result;
   
@@ -175,6 +179,14 @@ date todays_date () {
   return result;
 }
 
+int index_of_dow (string days[],int size, string dt_dow) {
+
+  for (int i=0 ; i < size; i++)
+  {
+    if (dt_dow == days[i])
+      return i;
+  }
+}
 
 int index_of_month (string months[],int size, string dt_month) {
 
@@ -196,7 +208,78 @@ int compare_dates (date dt1, date dt2) {
   
 }
 
+string incremented_dow (string days[],int size,string dow) {
+  if (index_of_dow(days,size,dow) != number_of_dow-1 )
+    return days[index_of_dow(days,size,dow)+1];
+  
+  return days[0];
+}
 
+void initiate_calendar (food_item dining[],int size,date today,string days[],string months[]) {
+
+  dining[0].dt=today;
+  date base=today;
+  for (int i=0 ; i < size-1 ; i++)
+  {
+    if (base.dom+1 < number_of_days_in_month)
+    {
+      base.dom++;
+      base.dom=incremented_dow(days);
+      dining[i+1].dt.dow=base.dow;
+      dining[i+1].dt.dom=base.dom;
+      dining[i+1].dt.month=base.month;
+      dining[i+1].dt.year=base.year;
+    }
+    else
+    {
+      if (index_of_month(months,number_of_months,base.month) != number_of_months-1)
+      {
+        base.dom=1;
+        base.dom=incremented_dow(days);
+        dining[i+1].dt.dow=base.dow;
+        base.month=months[index_of_month(months,number_of_months,base.month)+1];
+
+        dining[i+1].dt.dom=base.dom;
+        dining[i+1].dt.month=base.month;
+        dining[i+1].dt.year=base.year;
+      }
+      else
+      {
+        base.dom=1;
+        base.dom=incremented_dow(days);
+        dining[i+1].dt.dow=base.dow;
+        
+        base.month=months[0];
+        base.year++;
+
+        dining[i+1].dt.dom=base.dom;
+        dining[i+1].dt.month=base.month;
+        dining[i+1].dt.year=base.year;
+      }
+      
+    }
+  }
+}
+
+// Add food items
+
+void add_new_food_item (food_item dining[],int index,date item_dt,food item_fd,int item_supply) {
+  
+  dining[index].dt=item_dt;
+  dining[index].fd=item_fd;
+  dining[index].supply=item_supply;
+}
+
+food_item add_new_food_item_menu (food_item central_dining[],food_item dorm_dining[]) {
+
+  int central_or_dorm=print_message_input_int("\nChoose Dining:\n   1) Central\n    2) Dorm");
+
+  switch (central_or_dorm){
+    case 1:
+
+  }
+
+}
 
 
 

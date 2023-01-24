@@ -6,6 +6,7 @@
 #define number_of_days_in_year 365
 #define number_of_days_in_month 30
 #define number_of_months 12
+#define number_of_dow 7
 #endif
 
 void print_warning (char* text);
