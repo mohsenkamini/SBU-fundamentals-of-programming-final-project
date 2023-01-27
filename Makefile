@@ -12,7 +12,7 @@ diningmake: $(Main) $(Deps)
 	$(C++Compiler) -o $(ExecutableName)  $(Main) $(Deps)  $(C++Flags)
 
 clean: 
-	rm $(ExecutableName)
+	rm $(ExecutableName) &(test-dining)
 
 test:
 	$(C++Compiler) -o $(TestExecutableName)  $(TestMain) $(Deps)  $(C++Flags)
