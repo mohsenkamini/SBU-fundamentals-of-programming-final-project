@@ -21,3 +21,21 @@ What can I do for you?
    2) Log me in
    [1/2]: 
 ~~~
+
+### Test
+
+You can have a test for main function in order to easily test functions.
+
+To compile test.cpp run :
+~~~
+make test
+~~~
+The command above generates the executable `test-dining`
+
+### Finish up
+
+Run this to delete all the created executables:
+
+~~~
+make clean
+~~~
